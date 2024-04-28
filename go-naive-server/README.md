@@ -1,4 +1,4 @@
 # 3 routes
 - `/` - index.html
 - `/hello` - hello world
-- `/action` - consume ---> action.html
+- `/action` - consume form-data via POST
