@@ -4,10 +4,12 @@ import (
     "fmt"
     "net/http"
     "log"
+    "time" // for ticker
 )
 
 func main () {
 
+    go logger()
 
     // 3 routes
     //  - /         ---> index.html
@@ -21,10 +23,10 @@ func main () {
     http.HandleFunc("/hello", handleHelloWorld)
     http.HandleFunc("/action", handleAction)
 
-    fmt.Println("Server is up")
+    fmt.Println("Server has started.")
     err := http.ListenAndServe(":10086", nil)
     if err != nil {
-        fmt.Println("Failed to start server")
+        fmt.Println("Something went wrong.")
         log.Fatal(err)
         return
     }
@@ -48,7 +50,7 @@ func handleAction( w http.ResponseWriter, r * http.Request ) {
     err := r.ParseForm()
     if err != nil {
 
-        fmt.Fprintln(w, "ParseForm() err: \n\t", err)
+        fmt.Fprintln(w, "func ParseForm err: \n\t", err)
         return 
     }
     fmt.Fprintln(w, "POST \n\tsuccessfully consumed")
@@ -58,4 +60,18 @@ func handleAction( w http.ResponseWriter, r * http.Request ) {
     fmt.Fprintln(w, "Msg: \n\t", msg)
 }
 
+// added logger
 
+func logger () {
+
+    ticker := time.NewTicker( 12 * time.Second)
+
+    defer ticker.Stop()
+
+    for true {
+        select {
+            case <- ticker.C:
+                log.Println(":logger:")
+        }
+    }
+}
