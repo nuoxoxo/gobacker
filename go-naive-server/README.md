@@ -2,4 +2,3 @@
 - `/` - index.html
 - `/hello` - hello world
 - `/action` - consume action ---> action.html
-```
