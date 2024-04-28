@@ -21,10 +21,10 @@ func main () {
     http.HandleFunc("/hello", handleHelloWorld)
     http.HandleFunc("/action", handleAction)
 
-    fmt.Println("Server has started.")
+    fmt.Println("Server is up")
     err := http.ListenAndServe(":10086", nil)
     if err != nil {
-        fmt.Println("Something went wrong.")
+        fmt.Println("Failed to start server")
         log.Fatal(err)
         return
     }
