@@ -1,4 +1,4 @@
 # 3 routes
 - `/` - index.html
 - `/hello` - hello world
-- `/action` - consume action ---> action.html
+- `/action` - consume ---> action.html
